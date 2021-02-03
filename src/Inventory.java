@@ -31,10 +31,15 @@ public class Inventory {
 
     public void addStock(int stock, Product product) {
         stocks.put(product, stock + stocks.get(product));
-
     }
 
     public void delStock(int stock, Product product) {
+        if(stocks.get(product) - stock < 0) {
+            stocks.put(product, 0);
+        }
+        else {
+            stocks.put(product, stocks.get(product) - stock);
+        }
 
     }
 

@@ -1,7 +1,7 @@
 public class Product {
-    private String name;
-    private int id;
-    private double price;
+    private final String name;
+    private final int id;
+    private final double price;
 
     public Product() {
         name = "";

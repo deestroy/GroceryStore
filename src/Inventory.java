@@ -3,12 +3,12 @@ import java.util.HashMap;
 
 public class Inventory {
     // Product, Stock
-    private HashMap<Integer, Product> idproducts;
-    private HashMap<Product, Integer> amount;
+    private HashMap<Integer, Product> products;
+    private HashMap<Product, Integer> stocks;
 
     public Inventory() {
-        this.idproducts = new HashMap<Integer, Product>();
-        this.amount = new HashMap<Product, Integer>();
+        this.products = new HashMap<Integer, Product>();
+        this.stocks = new HashMap<Product, Integer>();
     }
 
     public String getPName(int id) {
@@ -16,22 +16,21 @@ public class Inventory {
         Get product name based on id
          */
         Integer temp = id;
-        return idproducts.get(temp).getName();
+        return products.get(temp).getName();
     }
 
     public double getPPrice(int id) {
         Integer temp = id;
-        return idproducts.get(temp).getPrice();
+        return products.get(temp).getPrice();
     }
 
     public int getStock(int id) {
-        return 0;
+        Integer temp = id;
+        return stocks.get(products.get(temp));
     }
 
     public void addStock(int stock, Product product) {
-        int id = product.getId();
-
-       // products.put(product, stock);
+        stocks.put(product, stock + stocks.get(product));
 
     }
 

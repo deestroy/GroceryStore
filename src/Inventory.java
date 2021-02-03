@@ -18,6 +18,11 @@ public class Inventory {
         Integer temp = id;
         return products.get(temp).getName();
     }
+    public void newProduct(String name, int id, double price) {
+        Product item = new Product(name, id, price);
+        products.put(id, item);
+        stocks.put(item, 0);
+    }
 
     public double getPPrice(int id) {
         Integer temp = id;
@@ -33,12 +38,13 @@ public class Inventory {
         stocks.put(product, stock + stocks.get(product));
     }
 
-    public void delStock(int stock, Product product) {
+    public boolean delStock(int stock, Product product) {
         if(stocks.get(product) - stock < 0) {
-            stocks.put(product, 0);
+            return false;
         }
         else {
             stocks.put(product, stocks.get(product) - stock);
+            return true;
         }
 
     }

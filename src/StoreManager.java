@@ -1,37 +1,30 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class StoreManager{
-    ArrayList<int[]> cart;
+    //ArrayList<int[]> cart;
+    HashMap <Integer, Integer> cart;
     Inventory inventory;
 
     public StoreManager() {
         this.inventory = new Inventory();
-        this.cart = new ArrayList<>();
+        this.cart = new HashMap<Integer, Integer>();
     }
 
     public void productList(int productID, int quantity) {
-        int[] item = {productID, quantity};
-        cart.add(item);
+        cart.put(productID, quantity);
     }
 
-    public void printCart() {
-        for(int i = 0; i < cart.size(); i++) {
-            for(int j = 0; j < cart.get(i).length; j++)
-                System.out.print(cart.get(i)[j] + " ");
+    public double transaction() {
+        double total = 0;
+        for(int i : cart.keySet()) {
+            if(inventory.delStock(i, cart.get(i)) == true) {
+                total += cart.get(i) * inventory.getPPrice(i);
+                inventory.delStock(i, cart.get(i));
+            }
         }
-        System.out.println();
-    }
-
-    public int transaction() {
-        int total = 0;
-
-        for(int i = 0; i < cart.size(); i++) {
-            for(int j = 0; j < cart.get(i).length; j++)
-
-        }
-        System.out.println();
-
+        return total;
     }
 
 

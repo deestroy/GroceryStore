@@ -18,35 +18,44 @@ public class Inventory {
         Integer temp = id;
         return products.get(temp).getName();
     }
-    public void newProduct(String name, int id, double price) {
+    public void newProduct(String name, int id, double price, int stock) {
         Product item = new Product(name, id, price);
         products.put(id, item);
-        stocks.put(item, 0);
+        stocks.put(item, stock);
     }
 
     public double getPPrice(int id) {
-        Integer temp = id;
-        return products.get(temp).getPrice();
+        return products.get(id).getPrice();
     }
 
     public int getStock(int id) {
-        Integer temp = id;
-        return stocks.get(products.get(temp));
+        if(checkProduct(id)) {
+            return stocks.get(products.get(id));
+        }
+        return -1;
     }
 
-    public void addStock(int stock, Product product) {
-        stocks.put(product, stock + stocks.get(product));
+    public void addStock(int id, int stock) {
+        if(checkProduct(id)) {
+            stocks.put(products.get(id), stock + stocks.get(products.get(id)));
+        }
     }
 
-    public boolean delStock(int stock, Product product) {
-        if(stocks.get(product) - stock < 0) {
+    public boolean delStock(int id, int stock) {
+        if(stocks.get(products.get(id)) - stock < 0) {
             return false;
         }
         else {
-            stocks.put(product, stocks.get(product) - stock);
+            stocks.put(products.get(id), stocks.get(products.get(id)) - stock);
             return true;
         }
+    }
 
+    private boolean checkProduct(int id) {
+        if(stocks.get(products.get(id)) == null) {
+            return false;
+        }
+        return true;
     }
 
 }

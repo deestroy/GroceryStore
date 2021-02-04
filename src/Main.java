@@ -2,30 +2,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        StoreManager store = new StoreManager();
-        String exit = "n";
-        int productID;
-        int quantity;
+        Inventory inv = new Inventory();
+        StoreManager store = new StoreManager(inv);
 
-        while(exit.equals("n")) {
-            Scanner p = new Scanner(System.in);
-            System.out.println("Input a productID:");
-            productID = p.nextInt();
-            System.out.println("Output: " + productID);
 
-            Scanner q = new Scanner(System.in);
-            System.out.println("Input a quantity:");
-            quantity = q.nextInt();
-            System.out.println("Output: " + quantity);
+        inv.newProduct("candy",1010,80, 10 );
+        inv.newProduct("candy",1020,60, 8 );
+        inv.newProduct("candy",1030,70, 7 );
 
-            store.productList(productID, quantity);
+        store.productList(1010, 2);
+        store.productList(1020, 2);
+        store.productList(1030, 2);
 
-            Scanner ex = new Scanner(System.in);
-            System.out.println("Do you want to exit:");
-            exit = ex.nextLine();
-
-        }
         store.printCart();
+        System.out.println("Total: " + store.transaction());
 
 
     }

@@ -6,6 +6,7 @@ public class Main {
         String exit = "n";
         int productID;
         int quantity;
+
         while(exit.equals("n")) {
             Scanner p = new Scanner(System.in);
             System.out.println("Input a productID:");

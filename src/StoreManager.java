@@ -17,18 +17,18 @@ public class StoreManager{
     }
 
     public double transaction() {
+
         double total = 0;
-        for(int i : cart.keySet()) {
-            if(inventory.delStock(i, cart.get(i)) == true) {
+        for (int i : cart.keySet()) {
+            if (inventory.delStock(i, cart.get(i))) {
                 total += cart.get(i) * inventory.getPPrice(i);
                 inventory.delStock(i, cart.get(i));
+            } else {
+                System.out.println(cart.get(i) + " is not available");
             }
         }
         return total;
     }
-
-
-
 
 
 

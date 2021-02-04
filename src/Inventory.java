@@ -15,8 +15,7 @@ public class Inventory {
         /*
         Get product name based on id
          */
-        Integer temp = id;
-        return products.get(temp).getName();
+        return products.get(id).getName();
     }
     public void newProduct(String name, int id, double price, int stock) {
         Product item = new Product(name, id, price);
@@ -39,6 +38,8 @@ public class Inventory {
         if(checkProduct(id)) {
             stocks.put(products.get(id), stock + stocks.get(products.get(id)));
         }
+        System.out.println("Product does not exist.");
+
     }
 
     public boolean delStock(int id, int stock) {

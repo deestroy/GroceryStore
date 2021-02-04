@@ -1,28 +1,26 @@
 public class Product {
-    private final String name;
-    private final int id;
-    private final double price;
+    private final String NAME;
+    private final int ID;
+    private final double PRICE;
 
     public Product() {
-        name = "";
-        id = 0;
-        price = 0;
+        this("",0,0);
     }
 
     public Product(String name, int id, double price) {
-        this.name = name;
-        this.id = id;
-        this.price = price;
+        NAME = name;
+        ID= id;
+        PRICE = price;
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
     public int getId() {
-        return id;
+        return ID;
     }
 
     public double getPrice() {
-        return price;
+        return PRICE;
     }
 }
